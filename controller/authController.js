@@ -67,7 +67,7 @@ export const login = async (req, res) => {
     }
 
     if (compare(password, user.password)) {
-      res.status(200).json({
+      return res.status(200).json({
         message: 'Login success',
         data: {
           user: {
