@@ -87,3 +87,35 @@ export const updateProfile = async (req, res) => {
     });
   }
 };
+
+export const updateProfileImage = async (req, res) => {
+  try {
+    const validation = updateProfileRequest.safeParse(req.body);
+
+    if (!validation.success) {
+      return res.status(402).json({
+        message: 'Validation error',
+        data: z.flattenError(validation.error)?.fieldErrors,
+      });
+    }
+
+    const userId = new mongoose.Types.ObjectId(req.user.id);
+    const { displayName, bio } = validation.data;
+    
+    await ProfileModel.findOneAndUpdate(
+      { user: userId },
+      { $set: { displayName, profilePicture : req.file.filename, bio } },
+      { new: true, upsert: true, runValidators: true }
+    );
+
+    return res.status(200).json({
+      message: 'Berhasil update profile',
+      data: null,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      data: null,
+    });
+  }
+};
