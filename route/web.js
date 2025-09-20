@@ -1,9 +1,12 @@
 import express from 'express';
 
-import * as userProfileController from '../controller/userProfileController.js';
+import * as profileController from '../controller/profileController.js';
 
 const web = express.Router();
 
-web.get('/:username', userProfileController.publicProfile);
+web.get('/', (req, res) => {
+  res.render('index');
+});
+web.get('/:username', profileController.publicProfile);
 
 export default web;
