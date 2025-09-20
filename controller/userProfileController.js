@@ -7,6 +7,7 @@ export const userProfile = (req, res) => {
       username: 'Celvine123',
       name: 'Celvine',
       profilePicture: 'https://avatar.iran.liara.run/public/13',
+      icon : 'bi-youtube'
     },
   });
 };
