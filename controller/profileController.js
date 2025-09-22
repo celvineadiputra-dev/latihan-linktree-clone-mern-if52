@@ -3,6 +3,7 @@ import UserModel from '../models/userModel.js';
 import { updateProfileRequest } from '../request/UpdateProfileRequest.js';
 import ProfileModel from '../models/profileModel.js';
 import mongoose from 'mongoose';
+import LinkModel from '../models/linkModel.js';
 
 export const publicProfile = async (req, res) => {
   const username = req.params.username;
@@ -19,9 +20,14 @@ export const publicProfile = async (req, res) => {
     user: new mongoose.Types.ObjectId(user?.id),
   });
 
+  const links = await LinkModel.find({
+    user : new mongoose.Types.ObjectId(user?.id),
+  })
+
   return res.render('public-profile', {
     user,
     profile,
+    links
   });
 };
 

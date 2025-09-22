@@ -30,25 +30,11 @@
 
       <div class="d-grid gap-3">
 
-        <a href="#" class="btn btn-glass btn-lg" role="button">
-          <i class="bi bi-youtube me-2"></i> YouTube Channel
+        <% links.forEach(link => { %>
+         <a href="<%= link?.url %>" class="btn btn-glass btn-lg" role="button">
+          <i class="bi <%= link?.icon %> me-2"></i> <%= link?.title %>
         </a>
-
-        <a href="#" class="btn btn-glass btn-lg" role="button">
-          <i class="bi bi-palette-fill me-2"></i> My Portfolio
-        </a>
-
-        <a href="#" class="btn btn-glass btn-lg" role="button">
-          <i class="bi bi-tiktok me-2"></i> TikTok
-        </a>
-
-        <a href="#" class="btn btn-glass btn-lg" role="button">
-          <i class="bi bi-twitter-x me-2"></i> Follow me on X
-        </a>
-
-        <a href="#" class="btn btn-glass btn-lg" role="button">
-          <i class="bi bi-envelope-heart-fill me-2"></i> Contact Me
-        </a>
+        <% }) %>
 
       </div>
       <div class="social-icons mt-5">
