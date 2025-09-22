@@ -19,7 +19,8 @@ api.get('/me', protect, userProfileController.privateProfile);
 api.put('/update_profile', protect, userProfileController.updateProfile);
 api.put('/update_profile_file', protect, upload.single('profilePicture'), userProfileController.updateProfileImage);
 
-api.post('/addLink', protect, linkController.addNewLink)
-api.post('/remove/:id', protect, linkController.removeLink)
+api.get('/link', protect, linkController.links)
+api.post('/link', protect, linkController.addNewLink)
+api.delete('/link/:id/remove', protect, linkController.removeLink)
 
 export default api;
